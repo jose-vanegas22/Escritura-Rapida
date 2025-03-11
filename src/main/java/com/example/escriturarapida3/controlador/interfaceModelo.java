@@ -22,6 +22,15 @@ public interface interfaceModelo {
      */
     boolean validarPalabraAlAzar(String palabraIngresada);
 
-    void cronometro();
+    int getTiempoFaltante();
 
+    void iniciarCronometro(Runnable onTiempoAgotado);
+
+    void reiniciarCronometro();
+
+    int getNivel();
+
+    void incrementarNivel();
+
+    int calcularTiempoSegunNivel();
 }

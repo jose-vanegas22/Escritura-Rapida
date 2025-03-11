@@ -1,6 +1,7 @@
 package com.example.escriturarapida3.controlador;
 
 import com.example.escriturarapida3.modelo.Modelo;
+import javafx.animation.AnimationTimer;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +12,7 @@ import javafx.scene.control.TextField;
 public class Controlador {
 
     @FXML
-    private Label lbPalabraAleatory, lbMensaje, lbTiempo;
+    private Label lbPalabraAleatory, lbMensaje, lbTiempo, lbNivel;
 
     @FXML
     private TextField tfPalabraIngresada;
@@ -29,6 +30,21 @@ public class Controlador {
     public void initialize() {
         modelo.obtenerPalabraAlAzar();
         lbPalabraAleatory.setText(modelo.getPalabraObjetivo());
+
+        //Iniciar el cronometro
+        modelo.iniciarCronometro(() -> {
+            lbMensaje.setText("Se acabo el tiempo, has perdido");
+            lbTiempo.setText("0 Segundos");
+        });
+
+        //Actualizar el tiempo en el label lbTiempo
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                lbTiempo.setText(modelo.getTiempoFaltante() + " Segundos");
+            }
+        };
+        timer.start();
     }
 
     /**
@@ -48,6 +64,10 @@ public class Controlador {
             modelo.obtenerPalabraAlAzar(); // Generar nueva palabra
             lbPalabraAleatory.setText(modelo.getPalabraObjetivo());
             tfPalabraIngresada.clear(); // Limpiar campo de texto
+            modelo.incrementarNivel(); //Incrementa nivel
+            lbNivel.setText("Nivel: " + modelo.getNivel());
+            modelo.reiniciarCronometro(); //Reinicia el cronometro
+            lbTiempo.setText(modelo.getTiempoFaltante() + " segundos");
 
         } else {
             lbMensaje.setText("Incorrecto. Inténtalo de nuevo.");

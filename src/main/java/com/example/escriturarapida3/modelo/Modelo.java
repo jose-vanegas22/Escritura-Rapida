@@ -1,8 +1,12 @@
 package com.example.escriturarapida3.modelo;
 
 import com.example.escriturarapida3.controlador.interfaceModelo;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 
 import java.util.Random;
+import java.util.Timer;
 
 
 /**
@@ -27,6 +31,9 @@ public class Modelo implements interfaceModelo {
      */
     private String palabraObjetivo;
 
+    private int tiempoFaltante, nivel = 1;
+    private Timeline timeline;
+
 
     /**
      * Esta es una variable de instancia en java, Random es una clase de java, se usa para generar numeros aleatorios
@@ -44,6 +51,7 @@ public class Modelo implements interfaceModelo {
      */
     public Modelo() {
         random = new Random();
+        tiempoFaltante = calcularTiempoSegunNivel();
     }
 
     /**
@@ -75,7 +83,46 @@ public class Modelo implements interfaceModelo {
         return palabraObjetivo;
     }
 
-    public void cronometro() {
-
+    public int getTiempoFaltante() {
+        return tiempoFaltante;
     }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void iniciarCronometro(Runnable onTiempoAgotado) {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), e  -> {
+            tiempoFaltante--;
+            if (tiempoFaltante == 0) {
+                timeline.stop();
+                onTiempoAgotado.run(); //Ejecuta la funcion cuando el tiempo se agota
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    public int calcularTiempoSegunNivel(){
+        int tiempoBase = 20; //Este es el tiempo con el que inicia
+        int decremento = (nivel - 1) / 5;
+        int tiempoCalculado = tiempoBase - (decremento * 2);
+
+        return Math.max(tiempoCalculado, 2); //El tiempo minimo es 2 segundos
+    }
+
+    @Override
+    public void reiniciarCronometro() {
+        tiempoFaltante = calcularTiempoSegunNivel();
+        if (timeline != null) {
+            timeline.stop();
+            timeline.playFromStart();
+        }
+    }
+
+
+    public void incrementarNivel(){
+        nivel++;
+    }
+
 }
