@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.example.escriturarapida3.modelo"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.example.escriturarapida3","l":"com.example.escriturarapida3"},{"m":"com.example.escriturarapida3","l":"com.example.escriturarapida3.controlador"},{"m":"com.example.escriturarapida3","l":"com.example.escriturarapida3.modelo"}];updateSearchResults();

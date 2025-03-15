@@ -9,4 +9,5 @@ module com.example.escriturarapida3 {
     exports com.example.escriturarapida3.controlador;
     exports com.example.escriturarapida3.modelo;
     opens com.example.escriturarapida3.controlador to javafx.fxml;
+    opens com.example.escriturarapida3.modelo to javafx.fxml;
 }
