@@ -26,6 +26,8 @@ public interface interfaceModelo {
 
     void iniciarCronometro(Runnable onTiempoAgotado);
 
+    void detenerCronometro();
+
     void reiniciarCronometro();
 
     int getNivel();
@@ -33,4 +35,12 @@ public interface interfaceModelo {
     void incrementarNivel();
 
     int calcularTiempoSegunNivel();
+
+    void reducirVida();
+
+    void reiniciarVidas();
+
+    boolean perdisteVidas();
+
+    int getVidas();
 }
