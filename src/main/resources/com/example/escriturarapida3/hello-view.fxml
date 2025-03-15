@@ -9,7 +9,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.escriturarapida3.controlador.Controlador">
    <children>
       <Label fx:id="lbPalabraAleatory" alignment="CENTER" layoutX="225.0" layoutY="105.0" prefHeight="18.0" prefWidth="150.0" />
-      <Button fx:id="btnValidar" layoutX="224.0" layoutY="247.0" mnemonicParsing="false" onAction="#onBotonValidar" prefHeight="26.0" prefWidth="150.0" text="VALIDAR" />
+      <Button fx:id="btnValidar" layoutX="224.0" layoutY="247.0" mnemonicParsing="false" onAction="#onBotonValidar" prefHeight="26.0" prefWidth="150.0" text="VALIDAR" textFill="#ea0000" />
       <TextField fx:id="tfPalabraIngresada" alignment="CENTER" layoutX="225.0" layoutY="165.0" />
       <Label fx:id="lbMensaje" alignment="CENTER" layoutX="160.0" layoutY="214.0" prefHeight="18.0" prefWidth="293.0" text="" />
       <Label fx:id="lbTiempo" layoutX="523.0" layoutY="31.0" />
